@@ -22,11 +22,12 @@ test.describe('Parabank Login & Registration', () => {
   });
 
 
-  test('Login with invalid login/password', async ({ page }) => {
+  test('Login with blank username and password', async ({ page }) => {
     const pm = new PageManager(page);
+  
     await pm.onLoginPage().goto();
-    await pm.onLoginPage().login(credentials.invalid.username, credentials.invalid.password);
-    await pm.onLoginPage().assertLoginFailed(messages.loginError);
+    await pm.onLoginPage().login('', '');
+    await pm.onLoginPage().assertLoginFailed(messages.loginBlankError);
   });
 
 
